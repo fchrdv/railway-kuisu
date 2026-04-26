@@ -4,6 +4,11 @@ import { userRoutes } from "./routes/user.ts";
 
 const app = new Hono().basePath("/api");
 
+app.use(function (ctx, next) {
+	console.log(ctx.req.header());
+	return next();
+});
+
 app.get("/health", function (ctx) {
 	return ctx.json({ message: "ok" });
 });
